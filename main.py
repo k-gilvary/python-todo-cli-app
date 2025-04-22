@@ -1,3 +1,7 @@
+from modules.add_task import add_task
+from modules.view_tasks import view_tasks
+from modules.delete_task import delete_task
+
 user_tasks = []
 
 def main():
@@ -9,25 +13,13 @@ def main():
         user_action = input('\nEnter your choice: ')
 
         if user_action == '1':
-            task_to_add = input('\nEnter the task you want to add: ')
-            user_tasks.append(task_to_add)
-            print(f'\nAdded task {task_to_add} successfully!')
+            add_task(user_tasks)
 
         elif user_action == '2':
-            if len(user_tasks) == 0:
-                print('\nYou have no tasks yet! Try adding one!')
-            else:
-                print('\nYour tasks:\n')
-                for i in range(len(user_tasks)):
-                    print(f'{i+1}- {user_tasks[i]}\n\n')
+            view_tasks(user_tasks)
 
         elif user_action == '3':
-            task_to_delete = int(input('\nEnter the index of the task you want to delete (1, 2, 3, etc.): ')) - 1
-            try: 
-                deleted_task = user_tasks.pop(task_to_delete)
-                print(f'\nDeleted task {deleted_task} successfully!')
-            except IndexError:
-                print('Invalid index. Please try again.')
+            delete_task(user_tasks)
 
         elif user_action == '4':
             print('\n\nGoodbye!\n\n')
